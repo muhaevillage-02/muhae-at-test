@@ -1,0 +1,15 @@
+{
+  "name": "muhae-at-test",
+  "version": "1.0.0",
+  "private": true,
+  "description": "무해한 마을 — 20대 진로 유형 테스트 (정적 사이트)",
+  "scripts": {
+    "start": "serve -s . -l ${PORT:-3000} --no-clipboard"
+  },
+  "dependencies": {
+    "serve": "14.2.4"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
