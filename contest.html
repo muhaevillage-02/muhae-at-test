@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LOGIN LAB · 대학생 창업 아이디어 공모전</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF5;
+    --bg-warm: #F4F1E8;
+    --card: #FFFFFF;
+    --ink: #0E0E0E;
+    --ink-soft: #2A2A2A;
+    --ink-mid: #555555;
+    --ink-light: #8A8A8A;
+    --line: #E5E2D7;
+    --line-strong: #2A2A2A;
+    --lime: #C8E600;
+    --lime-deep: #A8C400;
+    --lime-soft: #EEF7B5;
+    --shadow-sm: 0 2px 8px rgba(20,20,20,0.04);
+    --shadow-md: 0 6px 20px rgba(20,20,20,0.08);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    background-image: linear-gradient(rgba(20,20,20,0.025) 1px,transparent 1px), linear-gradient(90deg,rgba(20,20,20,0.025) 1px,transparent 1px);
+    background-size: 24px 24px; background-attachment: fixed;
+    font-family: 'Noto Sans KR','Apple SD Gothic Neo',sans-serif;
+    color: var(--ink); line-height: 1.65; min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* TOP BAR */
+  .topbar { background: var(--ink); color: #fff; padding: 10px 24px; font-family: 'IBM Plex Mono',monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+  .topbar-left { display: flex; align-items: center; gap: 16px; }
+  .topbar-dot { display: inline-block; width: 8px; height: 8px; background: var(--lime); border-radius: 50%; box-shadow: 0 0 8px var(--lime); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+  /* HEADER */
+  .header { background: var(--ink); color: #fff; padding: 56px 24px 72px; text-align: center; position: relative; overflow: hidden; }
+  .header::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px); background-size: 32px 32px; }
+  .header-inner { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; }
+  .logo { display: flex; justify-content: center; margin-bottom: 28px; }
+  .logo-svg { display: block; margin: 0 auto; }
+  .lab-tag { display: inline-block; margin-top: 12px; padding: 5px 14px; border: 1px solid var(--lime); color: var(--lime); font-family: 'IBM Plex Mono',monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; border-radius: 999px; }
+  .header-title { font-size: 30px; font-weight: 900; color: #fff; margin: 28px 0 12px; letter-spacing: -0.5px; line-height: 1.3; }
+  .header-title .accent { color: var(--lime); }
+  .header-sub { font-size: 15px; color: rgba(255,255,255,0.75); margin: 0; }
+  .header-meta { display: flex; justify-content: center; gap: 24px; margin-top: 28px; font-family: 'IBM Plex Mono',monospace; font-size: 11px; color: rgba(255,255,255,0.55); letter-spacing: 0.1em; text-transform: uppercase; flex-wrap: wrap; }
+  .header-meta span strong { color: var(--lime); font-weight: 500; }
+
+  /* CONTAINER */
+  .container { max-width: 760px; margin: -40px auto 0; padding: 0 20px 80px; position: relative; z-index: 2; }
+
+  /* WELCOME */
+  .welcome { background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 32px; margin-bottom: 28px; box-shadow: var(--shadow-md); position: relative; }
+  .welcome::before { content: ""; position: absolute; top: -1px; left: -1px; width: 48px; height: 4px; background: var(--lime); }
+  .welcome-label { font-family: 'IBM Plex Mono',monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 12px; }
+  .welcome-q { font-size: 24px; font-weight: 700; color: var(--ink); margin: 0 0 18px; letter-spacing: -0.3px; }
+  .welcome p { font-size: 15px; color: var(--ink-soft); margin: 0 0 12px; }
+  .welcome p:last-child { margin-bottom: 0; }
+  .highlight { background: linear-gradient(180deg,transparent 60%,var(--lime-soft) 60%); padding: 0 2px; font-weight: 600; }
+
+  /* INFO GRID */
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  @media(max-width:540px){ .info-grid{ grid-template-columns:1fr; } }
+  .info-card { background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 14px 16px; }
+  .info-card-label { font-family: 'IBM Plex Mono',monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lime-deep); margin-bottom: 6px; background: var(--ink); display: inline-block; padding: 2px 6px; border-radius: 2px; }
+  .info-card-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.7; margin-top: 6px; }
+  .info-card-body strong { color: var(--ink); }
+  .info-card-body ul { margin: 4px 0 0; padding-left: 16px; }
+  .info-card-body li { margin-bottom: 2px; }
+
+  /* PRIZE */
+  .prize-list { display: grid; gap: 12px; }
+  .prize-row { padding: 18px 20px; background: #fff; border: 1px solid var(--line); border-radius: 4px; transition: all 0.15s ease; }
+  .prize-row:hover { border-color: var(--ink); background: var(--bg-warm); }
+  .prize-row.grand { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .prize-row.grand:hover { background: var(--ink); }
+  .prize-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+  .prize-rank { font-family: 'IBM Plex Mono',monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; background: var(--lime); color: var(--ink); padding: 4px 10px; border-radius: 2px; font-weight: 700; }
+  .prize-name { font-size: 17px; font-weight: 700; letter-spacing: -0.3px; color: var(--ink); }
+  .prize-row.grand .prize-name { color: #fff; }
+  .prize-name-en { font-size: 12px; color: var(--ink-light); font-family: 'IBM Plex Mono',monospace; letter-spacing: 0.05em; margin-left: 6px; }
+  .prize-row.grand .prize-name-en { color: rgba(255,255,255,0.5); }
+  .prize-rewards { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+  .prize-row.grand .prize-rewards { border-color: rgba(255,255,255,0.15); }
+  .reward-cell { padding: 12px 14px; background: var(--bg); }
+  .prize-row.grand .reward-cell { background: rgba(255,255,255,0.05); }
+  .reward-cell + .reward-cell { border-left: 1px solid var(--line); }
+  .prize-row.grand .reward-cell + .reward-cell { border-left-color: rgba(255,255,255,0.15); }
+  .reward-label { font-family: 'IBM Plex Mono',monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 6px; }
+  .prize-row.grand .reward-label { color: var(--lime); }
+  .reward-value { font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.5; }
+  .prize-row.grand .reward-value { color: #fff; font-weight: 500; }
+  .reward-value strong { display: block; font-size: 17px; margin-bottom: 2px; }
+  .reward-value ul { margin: 4px 0 0; padding: 0 0 0 16px; font-size: 13px; font-weight: 400; color: var(--ink-mid); line-height: 1.6; }
+  .prize-row.grand .reward-value ul { color: rgba(255,255,255,0.7); }
+  .reward-value li { margin-bottom: 2px; }
+  .reward-sub { font-size: 12px; color: var(--ink-light); margin-top: 4px; font-weight: 400; line-height: 1.5; }
+  .prize-row.grand .reward-sub { color: rgba(255,255,255,0.5); }
+  @media(max-width:540px){ .prize-rewards{grid-template-columns:1fr} .reward-cell+.reward-cell{border-left:none;border-top:1px solid var(--line)} .prize-row.grand .reward-cell+.reward-cell{border-top-color:rgba(255,255,255,0.15)} }
+
+  /* SCHEDULE */
+  .schedule-table { border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+  .schedule-row { display: grid; grid-template-columns: 160px 1fr; border-bottom: 1px solid var(--line); }
+  .schedule-row:last-child { border-bottom: none; }
+  .schedule-label { background: var(--bg-warm); padding: 14px 18px; font-family: 'IBM Plex Mono',monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); font-weight: 600; border-right: 1px solid var(--line); }
+  .schedule-value { padding: 14px 18px; font-size: 14px; color: var(--ink-soft); }
+  .schedule-value strong { color: var(--ink); font-weight: 700; }
+  @media(max-width:540px){ .schedule-row{grid-template-columns:1fr} .schedule-label{border-right:none;border-bottom:1px solid var(--line)} }
+
+  /* SECTIONS */
+  .section { background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 0; margin-bottom: 20px; box-shadow: var(--shadow-sm); }
+  .section-head { border-bottom: 1px solid var(--line); padding: 22px 32px; background: var(--bg-warm); display: flex; align-items: center; gap: 16px; }
+  .section-num { flex-shrink: 0; width: 38px; height: 38px; background: var(--ink); color: var(--lime); display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono',monospace; font-weight: 600; font-size: 13px; letter-spacing: 0.05em; }
+  .section-titles { flex: 1; min-width: 0; }
+  .section-meta { font-family: 'IBM Plex Mono',monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 4px; }
+  .section-title { font-size: 19px; font-weight: 700; color: var(--ink); margin: 0; letter-spacing: -0.2px; }
+  .section-body { padding: 28px 32px; }
+  .section-desc { font-size: 14px; color: var(--ink-mid); margin: 0 0 24px; padding: 12px 14px; background: var(--bg); border-left: 3px solid var(--lime); border-radius: 0 4px 4px 0; }
+
+  /* FIELDS */
+  .field { margin-bottom: 22px; }
+  .field:last-child { margin-bottom: 0; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media(max-width:540px){ .row{grid-template-columns:1fr} }
+  label { display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+  label .req { color: var(--lime-deep); background: var(--ink); padding: 2px 6px; border-radius: 2px; font-family: 'IBM Plex Mono',monospace; font-size: 10px; letter-spacing: 0.05em; }
+  label .opt { color: var(--ink-soft); background: var(--bg-warm); border: 1px solid var(--line-strong); padding: 1px 6px; border-radius: 2px; font-family: 'IBM Plex Mono',monospace; font-size: 10px; }
+  .hint { font-size: 12.5px; color: var(--ink-light); margin-top: 6px; font-family: 'IBM Plex Mono',monospace; letter-spacing: 0.02em; }
+  .guide { background: var(--bg-warm); border: 1px dashed var(--line-strong); padding: 10px 14px; border-radius: 4px; font-size: 13px; color: var(--ink-mid); margin-top: 8px; line-height: 1.6; }
+  .guide::before { content: "// TIP"; font-family: 'IBM Plex Mono',monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--ink); background: var(--lime); padding: 2px 6px; border-radius: 2px; margin-right: 8px; font-weight: 600; }
+
+  input[type="text"],input[type="tel"],input[type="email"],input[type="number"],textarea,select { width: 100%; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 4px; font-family: inherit; font-size: 14.5px; color: var(--ink); background: #fff; transition: all 0.15s ease; outline: none; -webkit-appearance: none; }
+  input:focus,textarea:focus,select:focus { border-color: var(--ink); box-shadow: 0 0 0 3px var(--lime-soft); }
+  textarea { min-height: 120px; resize: vertical; font-family: inherit; }
+  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%238A8A8A' d='M5 7l5 5 5-5z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; background-size: 20px; padding-right: 36px; cursor: pointer; }
+  .char-counter { font-size: 11px; color: var(--ink-light); text-align: right; margin-top: 6px; font-family: 'IBM Plex Mono',monospace; }
+  .char-counter.warn { color: var(--lime-deep); font-weight: 600; }
+
+  /* OPTIONS */
+  .options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .option { flex: 1 1 auto; min-width: 140px; position: relative; }
+  .option input { position: absolute; opacity: 0; pointer-events: none; }
+  .option label { display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: #fff; border: 1.5px solid var(--line); border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: 500; margin: 0; transition: all 0.15s ease; color: var(--ink-soft); }
+  .option label::before { content: ""; width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--line-strong); flex-shrink: 0; transition: all 0.15s ease; }
+  .option.checkbox label::before { border-radius: 3px; }
+  .option label:hover { border-color: var(--ink); background: var(--bg-warm); }
+  .option input:checked + label { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .option input:checked + label::before { background: var(--lime); border-color: var(--lime); box-shadow: inset 0 0 0 3px var(--ink); }
+  .option.checkbox input:checked + label::before { background: var(--lime) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230E0E0E' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center/11px no-repeat; box-shadow: none; }
+  .options-vertical .option { flex: 1 1 100%; min-width: 100%; }
+  .options-vertical .option label { align-items: flex-start; line-height: 1.5; }
+  .options-vertical .option label::before { margin-top: 3px; }
+  .opt-tag { display: inline-block; background: var(--lime); color: var(--ink); font-family: 'IBM Plex Mono',monospace; font-size: 10px; padding: 2px 6px; border-radius: 2px; margin-right: 6px; letter-spacing: 0.05em; font-weight: 600; }
+  .option input:checked + label .opt-tag { background: var(--lime); color: var(--ink); }
+  .opt-desc { font-size: 12.5px; font-weight: 400; color: var(--ink-light); margin-top: 2px; }
+  .option input:checked + label .opt-desc { color: rgba(255,255,255,0.65); }
+
+  /* CONSENT */
+  .consent { background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 16px 18px; font-size: 13px; color: var(--ink-mid); margin-bottom: 16px; line-height: 1.7; }
+  .consent strong { color: var(--ink); display: block; margin-bottom: 6px; font-weight: 700; font-family: 'IBM Plex Mono',monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* SUBMIT */
+  .submit-area { text-align: center; margin-top: 36px; padding: 32px; background: var(--ink); border-radius: 4px; position: relative; overflow: hidden; }
+  .submit-area::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px); background-size: 24px 24px; }
+  .submit-area-text { color: rgba(255,255,255,0.7); font-size: 13px; margin-bottom: 16px; font-family: 'IBM Plex Mono',monospace; letter-spacing: 0.1em; text-transform: uppercase; position: relative; }
+  .submit-btn { background: var(--lime); color: var(--ink); border: none; padding: 16px 56px; font-size: 15px; font-weight: 700; border-radius: 4px; cursor: pointer; font-family: inherit; transition: all 0.15s ease; letter-spacing: 0.5px; position: relative; box-shadow: 4px 4px 0 var(--lime-deep); }
+  .submit-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--lime-deep); }
+  .submit-btn:active { transform: translate(0,0); box-shadow: 2px 2px 0 var(--lime-deep); }
+  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  /* TIPS */
+  .tips { background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 28px 32px; margin-top: 28px; position: relative; }
+  .tips::before { content: ""; position: absolute; top: -1px; left: -1px; width: 48px; height: 4px; background: var(--ink); }
+  .tips-label { font-family: 'IBM Plex Mono',monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 4px; }
+  .tips-title { font-size: 18px; font-weight: 700; color: var(--ink); margin: 0 0 16px; }
+  .tip-item { display: flex; gap: 14px; margin-bottom: 12px; font-size: 14px; color: var(--ink-mid); line-height: 1.6; padding: 12px 14px; background: var(--bg); border-radius: 4px; }
+  .tip-item:last-child { margin-bottom: 0; }
+  .tip-item strong { color: var(--ink); }
+  .tip-num { flex-shrink: 0; width: 24px; height: 24px; background: var(--ink); color: var(--lime); font-family: 'IBM Plex Mono',monospace; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center; border-radius: 2px; margin-top: 1px; }
+
+  /* FOOTER */
+  .footer { background: var(--ink); color: rgba(255,255,255,0.7); padding: 40px 24px; text-align: center; margin-top: 60px; }
+  .footer-msg { font-size: 16px; color: #fff; margin-bottom: 12px; font-weight: 500; }
+  .footer-msg .accent { color: var(--lime); }
+  .footer-sub { font-size: 13px; line-height: 1.7; margin-bottom: 24px; }
+  .footer-meta { font-family: 'IBM Plex Mono',monospace; font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; text-transform: uppercase; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+
+  /* MOBILE */
+  @media(max-width:640px) {
+    .container { padding: 0 14px 60px; }
+    .header { padding: 40px 20px 60px; }
+    .header-title { font-size: 24px; }
+    .section-head,.section-body,.welcome,.tips { padding-left: 22px; padding-right: 22px; }
+    .submit-btn { padding: 14px 36px; font-size: 14px; }
+    .header-meta { gap: 12px; font-size: 10px; }
+  }
+
+  /* MODAL */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(14,14,14,0.85); display: none; align-items: center; justify-content: center; z-index: 100; padding: 20px; backdrop-filter: blur(4px); }
+  .modal-overlay.show { display: flex; }
+  .modal { background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--lime); border-radius: 4px; padding: 36px 32px; text-align: center; max-width: 440px; width: 100%; box-shadow: var(--shadow-md); }
+  .modal-tag { display: inline-block; background: var(--lime); color: var(--ink); font-family: 'IBM Plex Mono',monospace; font-size: 10px; padding: 4px 10px; border-radius: 2px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; margin-bottom: 16px; }
+  .modal h3 { font-size: 22px; margin: 0 0 12px; font-weight: 700; }
+  .modal p { font-size: 14px; color: var(--ink-mid); line-height: 1.7; margin: 0 0 20px; }
+  .modal-btn { background: var(--ink); color: var(--lime); border: none; padding: 12px 32px; border-radius: 4px; font-weight: 600; cursor: pointer; font-family: inherit; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <span class="topbar-dot"></span>
+    <span>LOGIN LAB · 아이디어 공모전 접수 중</span>
+  </div>
+  <div>FORM ID: LL-2026-IDEA-001</div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <svg class="logo-svg" width="260" height="84" viewBox="0 0 340 110" xmlns="http://www.w3.org/2000/svg">
+        <defs><style>.lf{fill:#C8E600}.ls{fill:#8DA200}</style></defs>
+        <g class="ls" transform="translate(8,8)"><text x="0" y="80" font-family="'Noto Sans KR',sans-serif" font-size="96" font-weight="900" letter-spacing="-4">LOGin</text></g>
+        <g class="lf"><text x="0" y="80" font-family="'Noto Sans KR',sans-serif" font-size="96" font-weight="900" letter-spacing="-4">LOGin</text></g>
+      </svg>
+    </div>
+    <div><span class="lab-tag">Youth Idea Lab · 2026</span></div>
+
+    <h1 class="header-title">한 번쯤 생각해봤다면,<br><span class="accent">한 줄만 적어도 참여 가능.</span></h1>
+    <p class="header-sub">대학생 창업 아이디어 공모전 — 참가 신청서</p>
+
+    <div class="header-meta">
+      <span>PERIOD · <strong>05.15 ~ 07.06</strong></span>
+      <span>AGE · <strong>20~26세</strong></span>
+      <span>PRIZE · <strong>200만원 + MacBook</strong></span>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- WELCOME -->
+  <section class="welcome">
+    <div class="welcome-label">// Welcome · 공모전 소개</div>
+    <h2 class="welcome-q">거창한 기획서는 필요 없어요.</h2>
+    <p>취업을 준비하는 청년들이 겪는 문제를 해결할 수 있는 <span class="highlight">창업 아이디어를 제안</span>하는 공모전입니다. 완벽한 계획이 아니어도 됩니다. 일상에서 느낀 불편함, "이런 게 있으면 좋겠다" 싶었던 아이디어 하나면 충분합니다.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-card-label">공모 주제</div>
+        <div class="info-card-body">취업을 준비하는 청년들이 겪는 문제를 해결할 수 있는 <strong>서비스 또는 비즈니스 아이디어</strong> 제안</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">공모 자격</div>
+        <div class="info-card-body">서울·경기 거주 <strong>대학생 (20~26세)</strong><br>개인 참가만 가능</div>
+      </div>
+      <div class="info-card" style="grid-column: 1 / -1;">
+        <div class="info-card-label">공모 분야</div>
+        <div class="info-card-body">
+          <ul>
+            <li>기획 / 아이디어 부문</li>
+            <li>콘텐츠 제작 (영상·디자인) 부문</li>
+            <li>마케팅 / 브랜딩 전략 부문</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIZE -->
+  <section class="welcome" style="border-top: 4px solid var(--ink);">
+    <div class="welcome-label">// Prizes &amp; Rewards · 시상 안내</div>
+    <h2 class="welcome-q">상금 200만원 + MacBook Air M3.</h2>
+
+    <div class="prize-list">
+      <div class="prize-row grand">
+        <div class="prize-head">
+          <span class="prize-rank">대상 · 1명</span>
+          <span class="prize-name">Best Idea Award <span class="prize-name-en">· GRAND PRIZE</span></span>
+        </div>
+        <div class="prize-rewards">
+          <div class="reward-cell">
+            <div class="reward-label">// Reward · 상금</div>
+            <div class="reward-value"><strong>상금 200만 원</strong><div class="reward-sub">제세공과금 공제 후 지급</div></div>
+          </div>
+          <div class="reward-cell">
+            <div class="reward-label">// Spec · 스펙 혜택</div>
+            <div class="reward-value">
+              <strong>청년 스펙업 패키지 전체</strong>
+              <ul>
+                <li>1:1 코칭권</li>
+                <li>공식 이수증</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prize-row">
+        <div class="prize-head">
+          <span class="prize-rank">우수상 · 2명</span>
+          <span class="prize-name">Excellence Award <span class="prize-name-en">· RUNNER-UP</span></span>
+        </div>
+        <div class="prize-rewards">
+          <div class="reward-cell">
+            <div class="reward-label">// Reward · 상품</div>
+            <div class="reward-value"><strong>MacBook Air M3</strong><div class="reward-sub">각 1대씩, 총 2대 지급</div></div>
+          </div>
+          <div class="reward-cell">
+            <div class="reward-label">// Spec · 스펙 혜택</div>
+            <div class="reward-value">
+              <strong>청년 스펙업 패키지</strong>
+              <ul>
+                <li>1:1 코칭권</li>
+                <li>공식 이수증</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prize-row">
+        <div class="prize-head">
+          <span class="prize-rank">장려상 · 복수 선정</span>
+          <span class="prize-name">Encouragement Award <span class="prize-name-en">· SPEC TIER</span></span>
+        </div>
+        <div class="prize-rewards">
+          <div class="reward-cell">
+            <div class="reward-label">// Reward · 스펙 패키지</div>
+            <div class="reward-value"><strong>청년 스펙업 패키지</strong></div>
+          </div>
+          <div class="reward-cell">
+            <div class="reward-label">// Career · 구성</div>
+            <div class="reward-value">
+              <ul>
+                <li>① 현직자 1:1 온라인 커피챗 + 포트폴리오 첨삭</li>
+                <li>② '청년 인사이트' 공식 이수증</li>
+                <li>③ 전문가 네트워킹 밋업 초대</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="hint" style="margin-top:14px;">// 시상금은 제세공과금 공제 후 지급되며, 스펙 혜택은 수상자와 별도 협의 후 진행됩니다.</p>
+  </section>
+
+  <!-- 일정 -->
+  <section class="welcome" style="padding-bottom: 28px;">
+    <div class="welcome-label">// Schedule · 공모 일정</div>
+    <h2 class="welcome-q" style="font-size:20px; margin-bottom:16px;">한눈에 보는 진행 일정</h2>
+    <div class="schedule-table">
+      <div class="schedule-row">
+        <div class="schedule-label">// Application</div>
+        <div class="schedule-value"><strong>2026. 05. 11 (월) ~ 06. 15 (월)</strong> · 참가 접수</div>
+      </div>
+      <div class="schedule-row">
+        <div class="schedule-label">// 1st Review</div>
+        <div class="schedule-value">~ <strong>2026. 06. 26 (금)</strong> · 1차 서류심사 &amp; 인사이트 콜링</div>
+      </div>
+      <div class="schedule-row">
+        <div class="schedule-label">// Final</div>
+        <div class="schedule-value">~ <strong>2026. 07. 06 (월)</strong> · 본선 발표 심사 &amp; 시상</div>
+      </div>
+    </div>
+  </section>
+
+  <form id="applyForm" onsubmit="return handleSubmit(event)">
+
+    <!-- 01. 기본 정보 -->
+    <section class="section">
+      <header class="section-head">
+        <div class="section-num">01</div>
+        <div class="section-titles">
+          <div class="section-meta">PARTICIPANT INFO</div>
+          <h3 class="section-title">기본 정보</h3>
+        </div>
+      </header>
+      <div class="section-body">
+        <p class="section-desc">서울·경기 거주 <strong>20~26세 대학생</strong>만 신청 가능합니다. 개인 참가에 한합니다.</p>
+
+        <div class="row">
+          <div class="field">
+            <label>이름 <span class="req">REQUIRED</span></label>
+            <input type="text" name="name" placeholder="예) 홍길동" required />
+          </div>
+          <div class="field">
+            <label>생년월일 <span class="req">REQUIRED</span></label>
+            <input type="text" name="birth" placeholder="예) 030415" maxlength="6" required />
+            <p class="hint">// 6자리 (2001~2007년생)</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>대학교 / 학과 <span class="req">REQUIRED</span></label>
+            <input type="text" name="university" placeholder="예) ○○대 경영학과 3학년" required />
+          </div>
+          <div class="field">
+            <label>거주지 <span class="req">REQUIRED</span></label>
+            <select name="region" required>
+              <option value="">선택해주세요</option>
+              <option>서울</option>
+              <option>경기 / 인천</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>연락처 <span class="req">REQUIRED</span></label>
+            <input type="tel" name="phone" placeholder="01012345678" required />
+            <p class="hint">// 1차 심사 후 개별 연락</p>
+          </div>
+          <div class="field">
+            <label>이메일 <span class="req">REQUIRED</span></label>
+            <input type="email" name="email" placeholder="example@email.com" required />
+            <p class="hint">// 결과 안내에 사용됩니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02. 아이디어 제안 -->
+    <section class="section">
+      <header class="section-head">
+        <div class="section-num">02</div>
+        <div class="section-titles">
+          <div class="section-meta">YOUR IDEA</div>
+          <h3 class="section-title">아이디어를 들려주세요</h3>
+        </div>
+      </header>
+      <div class="section-body">
+        <p class="section-desc">완벽하지 않아도 됩니다. 일상에서 느낀 불편함과 "이렇게 해결하면 어떨까?" 라는 생각을 그대로 적어주세요.</p>
+
+        <div class="field">
+          <label>지원 부문 <span class="req">REQUIRED</span></label>
+          <div class="options options-vertical">
+            <div class="option">
+              <input type="radio" id="cat-1" name="category" value="기획/아이디어 부문" required />
+              <label for="cat-1"><span><span class="opt-tag">A</span><strong>기획 / 아이디어 부문</strong><div class="opt-desc">서비스·비즈니스 아이디어 기획 및 제안</div></span></label>
+            </div>
+            <div class="option">
+              <input type="radio" id="cat-2" name="category" value="콘텐츠 제작 부문" />
+              <label for="cat-2"><span><span class="opt-tag">B</span><strong>콘텐츠 제작 부문</strong><div class="opt-desc">영상·디자인 등 시각적 콘텐츠로 아이디어 표현</div></span></label>
+            </div>
+            <div class="option">
+              <input type="radio" id="cat-3" name="category" value="마케팅/브랜딩 전략 부문" />
+              <label for="cat-3"><span><span class="opt-tag">C</span><strong>마케팅 / 브랜딩 전략 부문</strong><div class="opt-desc">아이디어를 알리고 성장시키는 전략 제안</div></span></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field" style="margin-top:20px;">
+          <label>아이디어 설명 <span class="req">REQUIRED</span></label>
+          <textarea name="idea" maxlength="1000" rows="7"
+            placeholder="어떤 문제를 발견했나요? 그걸 어떻게 해결하는 서비스나 아이디어인가요?
+
+예) '취준생들이 포트폴리오를 어디서 시작해야 할지 몰라서 헤매는 문제를 발견했어요. 현직자가 직접 피드백을 주는 구독형 서비스를 만들면 어떨까 싶었습니다.'"
+            required></textarea>
+          <div class="char-counter"><span id="ideaCount">0</span> / 1,000자</div>
+          <div class="guide">길게 쓰지 않아도 돼요. 문제와 해결 아이디어를 간단하게, 솔직하게 적어주세요.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03. 동의 -->
+    <section class="section">
+      <header class="section-head">
+        <div class="section-num">03</div>
+        <div class="section-titles">
+          <div class="section-meta">CONSENT</div>
+          <h3 class="section-title">개인정보 수집 및 이용 동의</h3>
+        </div>
+      </header>
+      <div class="section-body">
+        <p class="section-desc">공모전 운영을 위해 최소한의 개인정보를 수집합니다.</p>
+
+        <div class="consent">
+          <strong>// Data Collection Notice</strong>
+          수집 항목: 이름, 생년월일, 대학교, 거주지, 연락처, 이메일, 제출 아이디어.<br>
+          이용 목적: 공모전 심사, 결과 안내, 시상금 지급, 향후 LOGIN LAB 프로그램 연계.<br>
+          보유 기간: 공모전 종료 후 6개월 이내 파기 (수상자는 1년).
+        </div>
+
+        <div class="options options-vertical">
+          <div class="option checkbox">
+            <input type="checkbox" id="agree-1" name="agree_privacy" required />
+            <label for="agree-1">[필수] 개인정보 수집 및 이용에 동의합니다.</label>
+          </div>
+          <div class="option checkbox">
+            <input type="checkbox" id="agree-2" name="agree_use" required />
+            <label for="agree-2">[필수] 제출한 아이디어가 LOGIN LAB 리포트에 익명으로 인용될 수 있음에 동의합니다.</label>
+          </div>
+          <div class="option checkbox">
+            <input type="checkbox" id="agree-3" name="agree_marketing" />
+            <label for="agree-3">[선택] LOGIN LAB의 향후 청년 프로젝트 소식을 이메일로 받겠습니다.</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="submit-area">
+      <div class="submit-area-text">// Ready to Submit · 신청 마감 2026.06.15</div>
+      <button type="submit" class="submit-btn" id="submitBtn">신청서 제출하기 →</button>
+    </div>
+  </form>
+
+  <section class="tips">
+    <div class="tips-label">// Notice</div>
+    <h3 class="tips-title">신청 전 확인사항</h3>
+    <div class="tip-item">
+      <div class="tip-num">01</div>
+      <div><strong>지원 자격</strong> · 서울·경기 거주 대학생 (20~26세). 재학 중이거나 휴학 중이어도 가능. 개인 참가에 한합니다.</div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">02</div>
+      <div><strong>심사 기준</strong> · 아이디어의 진정성 · 문제 발견의 공감력 · 실현 가능성 순. 디자인·문서 완성도는 평가하지 않습니다.</div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">03</div>
+      <div><strong>전형 절차</strong> · 서류 접수 → 1차 심사 &amp; 인사이트 콜링(약 15분 전화) → 본선 발표 심사 → 시상</div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-msg">한 줄의 아이디어가, <span class="accent">세상을 바꿉니다.</span></div>
+  <div class="footer-sub">당신이 불편하다고 느낀 그 순간이<br>다음 세대 청년들의 일상을 바꾸는 시작점이 됩니다.</div>
+  <div class="footer-meta">
+    <span>© 2026 LOGIN LAB</span>
+    <span>YOUTH IDEA CONTEST</span>
+    <span>FORM v2.0</span>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-tag">SUBMITTED · 제출 완료</div>
+    <h3>신청해 주셔서 감사합니다!</h3>
+    <p>꼼꼼히 검토한 뒤,<br>1차 합격자에게 개별 연락드립니다.<br><br>당신의 아이디어를<br>진지하게 들을게요.</p>
+    <button class="modal-btn" onclick="closeModal()">확인</button>
+  </div>
+</div>
+
+<script>
+  var GAS_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+
+  var ta = document.querySelector('textarea[name="idea"]');
+  var counter = document.getElementById('ideaCount');
+  if (ta && counter) {
+    ta.addEventListener('input', function() {
+      counter.textContent = ta.value.length.toLocaleString();
+      var el = counter.parentElement;
+      if (ta.value.length > 900) el.classList.add('warn');
+      else el.classList.remove('warn');
+    });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    var form = document.getElementById('applyForm');
+    if (!form.checkValidity()) { form.reportValidity(); return false; }
+
+    var data = {
+      name:       form.name.value.trim(),
+      birth:      form.birth.value.trim(),
+      university: form.university.value.trim(),
+      region:     form.region.value,
+      phone:      form.phone.value.trim(),
+      email:      form.email.value.trim(),
+      category:   form.category.value,
+      idea:       form.idea.value.trim(),
+      agree_privacy:   form.agree_privacy.checked,
+      agree_use:       form.agree_use.checked,
+      agree_marketing: form.agree_marketing.checked,
+      timestamp: new Date().toISOString()
+    };
+
+    var btn = document.getElementById('submitBtn');
+    btn.disabled = true; btn.textContent = '제출 중...';
+
+    if (!GAS_URL || GAS_URL.indexOf('YOUR_APPS_SCRIPT') === 0) {
+      setTimeout(function() {
+        document.getElementById('modal').classList.add('show');
+        btn.disabled = false; btn.textContent = '신청서 제출하기 →';
+      }, 800);
+      return false;
+    }
+
+    fetch(GAS_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(data)
+    })
+    .then(function() { document.getElementById('modal').classList.add('show'); })
+    .catch(function() { alert('제출 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.'); })
+    .finally(function() { btn.disabled = false; btn.textContent = '신청서 제출하기 →'; });
+    return false;
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('show');
+    document.getElementById('applyForm').reset();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
