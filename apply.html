@@ -900,8 +900,39 @@
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
   var GAS_URL = 'https://script.google.com/macros/s/AKfycbyYFw9dYgh_mkTS0X3H3elRmxYQLEyUXU2r089eVxhSgyiCrZ31KZk4E63gXcdOp-pR/exec';
+
+  // ===== Supabase 연동 =====
+  var _sb = supabase.createClient(
+    'https://atzyvbifvrlhwploqmpr.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0enl2YmlmdnJsaHdwbG9xbXByIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyMjQzNTEsImV4cCI6MjA5MzgwMDM1MX0.6ap0rxCQXVsShJXTFb5UIKN4ykog32BLL1sBZN6vEMo'
+  );
+
+  async function saveToSupabase(data) {
+    var payload = {
+      name:             data.name || '',
+      age:              data.age || '',
+      phone:            data.phone || '',
+      region:           data.region || '',
+      residence_detail: data.residence_detail || '',
+      status:           data.status || '',
+      status_other:     data.status_other || '',
+      job_target:       data.job_target || '',
+      job_type:         data.jobType || '',
+      edu:              data.edu || '',
+      history:          data.history || '',
+      motivation:       data.motivation || '',
+      support:          data.support || '',
+      agree_privacy:    !!data.agree_privacy,
+      user_agent:       navigator.userAgent,
+      submitted_at:     new Date().toISOString()
+    };
+    var res = await _sb.from('AD-muhae-apply').insert([payload]);
+    if (res.error) console.error('[Supabase] 저장 실패:', res.error.message);
+    else console.log('[Supabase] 저장 완료');
+  }
 
   // 거주지 세부 입력 활성화
   (function () {
@@ -959,6 +990,9 @@
 
     var btn = document.getElementById('submitBtn');
     btn.disabled = true; btn.textContent = '제출 중...';
+
+    // Supabase 저장 (구글시트와 병행)
+    saveToSupabase(data);
 
     if (!GAS_URL || GAS_URL.indexOf('YOUR_APPS_SCRIPT') === 0) {
       setTimeout(function () {
