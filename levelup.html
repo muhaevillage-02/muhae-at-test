@@ -69,6 +69,7 @@
   .welcome p { font-size: 15px; color: var(--ink-soft); margin: 0 0 12px; }
   .welcome p:last-child { margin-bottom: 0; }
   .highlight { background: linear-gradient(180deg,transparent 60%,var(--lime-soft) 60%); padding: 0 2px; font-weight: 600; }
+  .mark { background: var(--lime); color: var(--chip); padding: 1px 6px; border-radius: 3px; font-weight: 800; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 
   /* INFO GRID */
   .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
@@ -228,12 +229,12 @@
 <div class="container">
 
   <!-- WHY NOW -->
-  <section class="welcome" style="border-top: 4px solid var(--chip);">
-    <div class="welcome-label">// Why Now · 신청 전 꼭 확인해주세요</div>
-    <h2 class="welcome-q">합격을 가르는 건, 이제 '나만의 경험'입니다.</h2>
-    <p>AI가 자소서를 작성해주고 면접까지 준비해주는 시대입니다. 이미 많은 취업 준비생들이 AI를 활용하고 있으며, 채용 담당자 역시 AI를 통해 지원서를 빠르게 검토합니다. 그래서 누구나 비슷하게 작성할 수 있는 내용은 쉽게 묻히고, 나만의 실전 경험과 차별화된 스토리를 담아내는 것이 더욱 중요해졌습니다.</p>
+  <section class="welcome" style="background: var(--lime-soft); border-color: var(--lime-deep); border-top: 4px solid var(--chip);">
+    <div class="welcome-label" style="color: var(--lime-deep); font-weight:700;">// Why Now · 신청 전 꼭 확인해주세요</div>
+    <h2 class="welcome-q" style="font-weight:900;">합격을 가르는 건, 이제 <span class="mark">'나만의 경험'</span>입니다.</h2>
+    <p>AI가 자소서를 작성해주고 면접까지 준비해주는 시대입니다. 이미 많은 취업 준비생들이 AI를 활용하고 있으며, <span class="mark">채용 담당자 역시 AI를 통해 지원서를 빠르게 검토합니다.</span> 그래서 누구나 비슷하게 작성할 수 있는 내용은 쉽게 묻히고, 나만의 실전 경험과 차별화된 스토리를 담아내는 것이 더욱 중요해졌습니다.</p>
     <p>AI가 발전할수록 오히려 경쟁력이 되는 것은 직접 경험한 이야기와 나만의 강점입니다. 어떤 경험을 했고, 어떤 문제를 해결했으며, 무엇을 배우고 성장했는지를 자신만의 키워드로 표현할 수 있어야 합니다. 이를 위해서는 자소서를 쓰기 전에 <span class="highlight">'나는 어떤 사람인지, 무엇을 잘하고 무엇을 보완해야 하는지'</span>를 먼저 명확히 이해하는 과정이 필요합니다.</p>
-    <p>저희는 단순히 자소서를 고쳐주는 것이 아니라 <strong>[역량검사, 1:1 전문가 코칭, 자소서 첨삭]</strong>을 통해 자신의 강점과 경험을 효과적으로 전달할 수 있도록 함께합니다. AI가 누구나 사용할 수 있는 도구가 된 지금, 결국 합격을 만드는 것은 나만의 경험과 이를 제대로 보여주는 <span class="highlight">"전략"</span>입니다.</p>
+    <p>저희는 단순히 자소서를 고쳐주는 것이 아니라 <strong>[역량검사, 1:1 전문가 코칭, 자소서 첨삭]</strong>을 통해 <span class="mark">자신의 강점과 경험을 효과적으로 전달할 수 있도록</span> 함께합니다. AI가 누구나 사용할 수 있는 도구가 된 지금, 결국 합격을 만드는 것은 나만의 경험과 이를 제대로 보여주는 <span class="highlight">"전략"</span>입니다.</p>
   </section>
 
   <!-- WELCOME -->
