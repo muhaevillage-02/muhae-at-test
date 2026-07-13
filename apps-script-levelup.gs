@@ -38,7 +38,7 @@ function doPost(e) {
       sheet.appendRow(headers);
       sheet.getRange(1, 1, 1, headers.length)
            .setFontWeight('bold')
-           .setBackground('#2BFF7E');
+           .setBackground('#CCFF00');
       sheet.setFrozenRows(1);
       sheet.setColumnWidth(1, 150);
       sheet.setColumnWidth(13, 280);
