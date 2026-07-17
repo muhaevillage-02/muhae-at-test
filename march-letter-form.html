@@ -623,7 +623,7 @@ function refreshUI(){
   if(cur===TOTAL){cta.style.display="none";}
   else{cta.style.display="";document.getElementById("ctaBtn").textContent=btnLabels[cur-1];}
 }
-var SHEET_URL='https://script.google.com/macros/s/AKfycbxOmO1OoVCfFASzkuWEmCT7a--z-rY10X4BraQd7Tk4v3GDptTlHRgkghI5mdVCOcpm/exec';
+var SHEET_URL='https://script.google.com/macros/s/AKfycby3S-RCP0Z7Ku9QiuDlbFSoit4wsZLwy4vosDRehgiRC44yLJxKdf6aOF8DgIz-2Tgb/exec';
 
 function goNext(e){
   if(cur===1){
@@ -701,16 +701,17 @@ function submitToSheet(){
     score:    document.getElementById('scoreSlider')?document.getElementById('scoreSlider').value:'',
     letter:   v('ta1'),
     secret:   v('ta2'),
-    isAnon:   anonOn?'익명':'공개'
+    isAnon:   anonOn?'익명':'공개',
+    userAgent: navigator.userAgent,
+    timestamp: new Date().toISOString(),
+    form_type: 'essay_contest'
   };
 
-  // GET 방식 — 로컬 파일에서도 CORS 없이 동작
-  var params=Object.keys(data).map(function(k){
-    return encodeURIComponent(k)+'='+encodeURIComponent(data[k]);
-  }).join('&');
-
-  var img=new Image();
-  img.src=SHEET_URL+'?'+params;
+  fetch(SHEET_URL, {
+    method: 'POST', mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(data)
+  }).catch(function(){});
 }
 
 function v(id){

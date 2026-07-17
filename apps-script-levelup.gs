@@ -3,8 +3,9 @@
 //  하나의 웹앱 배포로 여러 폼을 처리, data.form_type 값에 따라
 //  같은 스프레드시트 내 서로 다른 탭에 저장합니다.
 //
-//  - levelup.html        → form_type 없음 또는 'levelup'  → 시트 'LL_레벨업신청'
-//  - story-contest.html  → form_type: 'story_contest'     → 시트 '도전 스토리'
+//  - levelup.html          → form_type 없음 또는 'levelup'  → 시트 'LL_레벨업신청'
+//  - story-contest.html    → form_type: 'story_contest'     → 시트 '도전 스토리'
+//  - march-letter-form.html→ form_type: 'essay_contest'     → 시트 '대학생 에세이 공모전'
 // ============================================================
 //
 //  [배포 방법 — 기존에 levelup용으로 배포한 프로젝트를 그대로 사용]
@@ -88,6 +89,37 @@ var FORMS = {
         data.agree_privacy ? 'O' : 'X',
         data.userAgent        || '',
         data.timestamp        || ''
+      ];
+    }
+  },
+
+  essay_contest: {
+    sheetName: '대학생 에세이 공모전',
+    headers: [
+      '제출 일시',
+      '이름', '나이', '학교 · 학년', '전공', '연락처',
+      '거주 시/도', '거주 구/군',
+      '고민 키워드', '갓생 점수',
+      '작년의 나에게 (에세이)', '지금 가장 큰 고민', '공개 여부',
+      'User-Agent', '타임스탬프'
+    ],
+    toRow: function (data) {
+      return [
+        new Date(),
+        data.name    || '',
+        data.age     || '',
+        data.school  || '',
+        data.major   || '',
+        data.phone   || '',
+        data.region  || '',
+        data.gu      || '',
+        data.keywords || '',
+        data.score   || '',
+        data.letter  || '',
+        data.secret  || '',
+        data.isAnon  || '',
+        data.userAgent || '',
+        data.timestamp  || ''
       ];
     }
   }
