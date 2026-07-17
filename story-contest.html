@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LOG.in · 2026 대학생 도전 스토리 공모전 · 참가 신청서</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --bg-warm: #EEF5FC;
+    --card: #FFFFFF;
+    --ink: #131B4D;
+    --ink-soft: #2B3260;
+    --ink-mid: #5A5F82;
+    --ink-light: #9296AE;
+    --line: #DCE6F2;
+    --line-strong: #131B4D;
+    --lime: #3FA9E0;
+    --lime-deep: #1B6FA0;
+    --lime-soft: #E7F5FC;
+    --on-lime: #0B1440;
+    --shadow-sm: 0 2px 8px rgba(19,27,77,0.05);
+    --shadow-md: 0 6px 24px rgba(19,27,77,0.10);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    background-image: linear-gradient(rgba(19,27,77,0.02) 1px,transparent 1px), linear-gradient(90deg,rgba(19,27,77,0.02) 1px,transparent 1px);
+    background-size: 24px 24px; background-attachment: fixed;
+    font-family: 'Noto Sans KR','Apple SD Gothic Neo',sans-serif;
+    color: var(--ink-soft); line-height: 1.65; min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* TOP BAR */
+  .topbar { background: var(--ink); color: #fff; padding: 10px 24px; font-family: 'IBM Plex Mono',monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+  .topbar-left { display: flex; align-items: center; gap: 16px; }
+  .topbar-dot { display: inline-block; width: 8px; height: 8px; background: var(--lime); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+  /* HEADER */
+  .header { background: var(--ink); color: #fff; padding: 56px 24px 72px; text-align: center; position: relative; overflow: hidden; }
+  .header::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px); background-size: 32px 32px; }
+  .header-inner { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; }
+  .logo { display: flex; justify-content: center; margin-bottom: 20px; }
+  .logo-svg { display: block; margin: 0 auto; }
+  .lab-tag { display: inline-block; margin-top: 12px; padding: 5px 14px; border: 1px solid var(--lime); color: var(--lime); font-family: 'IBM Plex Mono',monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; border-radius: 999px; }
+  .header-title { font-size: 30px; font-weight: 900; color: #fff; margin: 28px 0 12px; letter-spacing: -0.5px; line-height: 1.3; }
+  .header-title .accent { color: var(--lime); }
+  .header-sub { font-size: 15px; color: rgba(255,255,255,0.75); margin: 0; }
+  .header-meta { display: flex; justify-content: center; gap: 24px; margin-top: 28px; font-family: 'IBM Plex Mono',monospace; font-size: 11px; color: rgba(255,255,255,0.55); letter-spacing: 0.1em; text-transform: uppercase; flex-wrap: wrap; }
+  .header-meta span strong { color: var(--lime); font-weight: 500; }
+
+  /* CONTAINER */
+  .container { max-width: 760px; margin: -40px auto 0; padding: 0 20px 80px; position: relative; z-index: 2; }
+
+  /* WELCOME */
+  .welcome { background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 32px; margin-bottom: 28px; box-shadow: var(--shadow-md); position: relative; }
+  .welcome::before { content: ""; position: absolute; top: -1px; left: -1px; width: 48px; height: 4px; background: var(--lime); }
+  .welcome-label { font-family: 'IBM Plex Mono',monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 12px; }
+  .welcome-q { font-size: 24px; font-weight: 700; color: var(--ink); margin: 0 0 18px; letter-spacing: -0.3px; }
+  .welcome p { font-size: 15px; color: var(--ink-soft); margin: 0 0 12px; }
+  .welcome p:last-child { margin-bottom: 0; }
+  .highlight { background: linear-gradient(180deg,transparent 60%,var(--lime-soft) 60%); padding: 0 2px; font-weight: 600; }
+  .mark { background: var(--lime); color: var(--on-lime); padding: 1px 6px; border-radius: 3px; font-weight: 800; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+
+  /* INFO GRID */
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  @media(max-width:540px){ .info-grid{ grid-template-columns:1fr; } }
+  .info-card { background: var(--bg-warm); border: 1px solid var(--line); border-radius: 4px; padding: 14px 16px; }
+  .info-card-label { font-family: 'IBM Plex Mono',monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--on-lime); font-weight: 700; margin-bottom: 6px; background: var(--lime); display: inline-block; padding: 2px 6px; border-radius: 2px; }
+  .info-card-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.7; margin-top: 6px; }
+  .info-card-body strong { color: var(--ink); }
+  .info-card-body ul { margin: 4px 0 0; padding-left: 16px; }
+  .info-card-body li { margin-bottom: 2px; }
+
+  /* SCHEDULE */
+  .schedule-table { border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+  .schedule-row { display: grid; grid-template-columns: 160px 1fr; border-bottom: 1px solid var(--line); }
+  .schedule-row:last-child { border-bottom: none; }
+  .schedule-label { background: var(--bg-warm); padding: 14px 18px; font-family: 'IBM Plex Mono',monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); font-weight: 600; border-right: 1px solid var(--line); }
+  .schedule-value { padding: 14px 18px; font-size: 14px; color: var(--ink-soft); }
+  .schedule-value strong { color: var(--ink); font-weight: 700; }
+  @media(max-width:540px){ .schedule-row{grid-template-columns:1fr} .schedule-label{border-right:none;border-bottom:1px solid var(--line)} }
+
+  /* SECTIONS */
+  .section { background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 0; margin-bottom: 20px; box-shadow: var(--shadow-sm); }
+  .section-head { border-bottom: 1px solid var(--line); padding: 22px 32px; background: var(--bg-warm); display: flex; align-items: center; gap: 16px; }
+  .section-num { flex-shrink: 0; width: 38px; height: 38px; background: var(--ink); color: var(--lime); display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono',monospace; font-weight: 600; font-size: 13px; letter-spacing: 0.05em; }
+  .section-titles { flex: 1; min-width: 0; }
+  .section-meta { font-family: 'IBM Plex Mono',monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 4px; }
+  .section-title { font-size: 19px; font-weight: 700; color: var(--ink); margin: 0; letter-spacing: -0.2px; }
+  .section-body { padding: 28px 32px; }
+  .section-desc { font-size: 14px; color: var(--ink-mid); margin: 0 0 24px; padding: 12px 14px; background: var(--bg-warm); border-left: 3px solid var(--lime); border-radius: 0 4px 4px 0; }
+
+  /* FIELDS */
+  .field { margin-bottom: 22px; }
+  .field:last-child { margin-bottom: 0; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media(max-width:540px){ .row{grid-template-columns:1fr} }
+  label { display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+  label .req { color: var(--on-lime); background: var(--lime); font-weight: 700; padding: 2px 6px; border-radius: 2px; font-family: 'IBM Plex Mono',monospace; font-size: 10px; letter-spacing: 0.05em; }
+  label .opt { color: var(--ink-soft); background: var(--bg-warm); border: 1px solid var(--line-strong); padding: 1px 6px; border-radius: 2px; font-family: 'IBM Plex Mono',monospace; font-size: 10px; }
+  .hint { font-size: 12.5px; color: var(--ink-light); margin-top: 6px; font-family: 'IBM Plex Mono',monospace; letter-spacing: 0.02em; }
+  .guide { background: var(--bg-warm); border: 1px dashed var(--line-strong); padding: 10px 14px; border-radius: 4px; font-size: 13px; color: var(--ink-mid); margin-top: 8px; line-height: 1.6; }
+  .guide::before { content: "// TIP"; font-family: 'IBM Plex Mono',monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--on-lime); background: var(--lime); padding: 2px 6px; border-radius: 2px; margin-right: 8px; font-weight: 600; }
+
+  input[type="text"],input[type="tel"],input[type="email"],input[type="number"],textarea,select { width: 100%; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 4px; font-family: inherit; font-size: 14.5px; color: var(--ink); background: #fff; transition: all 0.15s ease; outline: none; -webkit-appearance: none; }
+  input:focus,textarea:focus,select:focus { border-color: var(--ink); box-shadow: 0 0 0 3px var(--lime-soft); }
+  textarea { min-height: 140px; resize: vertical; font-family: inherit; }
+  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%238A8A8A' d='M5 7l5 5 5-5z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; background-size: 20px; padding-right: 36px; cursor: pointer; }
+  .char-counter { font-size: 11px; color: var(--ink-light); text-align: right; margin-top: 6px; font-family: 'IBM Plex Mono',monospace; }
+  .char-counter.warn { color: var(--lime-deep); font-weight: 600; }
+
+  /* OPTIONS */
+  .options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .option { flex: 1 1 auto; min-width: 140px; position: relative; }
+  .option input { position: absolute; opacity: 0; pointer-events: none; }
+  .option label { display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: #fff; border: 1.5px solid var(--line); border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: 500; margin: 0; transition: all 0.15s ease; color: var(--ink-soft); }
+  .option label::before { content: ""; width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--line-strong); flex-shrink: 0; transition: all 0.15s ease; }
+  .option.checkbox label::before { border-radius: 3px; }
+  .option label:hover { border-color: var(--ink); background: var(--bg-warm); }
+  .option input:checked + label { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .option input:checked + label::before { background: var(--lime); border-color: var(--lime); box-shadow: inset 0 0 0 3px var(--ink); }
+  .option.checkbox input:checked + label::before { background: var(--lime) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B1440' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center/11px no-repeat; box-shadow: none; }
+  .options-vertical .option { flex: 1 1 100%; min-width: 100%; }
+  .options-vertical .option label { align-items: flex-start; line-height: 1.5; }
+  .options-vertical .option label::before { margin-top: 3px; }
+  .opt-tag { display: inline-block; background: var(--lime); color: var(--on-lime); font-family: 'IBM Plex Mono',monospace; font-size: 10px; padding: 2px 6px; border-radius: 2px; margin-right: 6px; letter-spacing: 0.05em; font-weight: 600; }
+  .option input:checked + label .opt-tag { background: var(--lime); color: var(--on-lime); }
+  .opt-desc { font-size: 12.5px; font-weight: 400; color: var(--ink-light); margin-top: 2px; }
+  .option input:checked + label .opt-desc { color: rgba(255,255,255,0.65); }
+
+  /* CONSENT */
+  .consent { background: var(--bg-warm); border: 1px solid var(--line); border-radius: 4px; padding: 16px 18px; font-size: 13px; color: var(--ink-mid); margin-bottom: 16px; line-height: 1.7; }
+  .consent strong { color: var(--ink); display: block; margin-bottom: 6px; font-weight: 700; font-family: 'IBM Plex Mono',monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* SUBMIT */
+  .submit-area { text-align: center; margin-top: 36px; padding: 32px; background: var(--ink); border-radius: 4px; position: relative; overflow: hidden; }
+  .submit-area::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px); background-size: 24px 24px; }
+  .submit-area-text { color: rgba(255,255,255,0.7); font-size: 13px; margin-bottom: 16px; font-family: 'IBM Plex Mono',monospace; letter-spacing: 0.1em; text-transform: uppercase; position: relative; }
+  .submit-btn { background: var(--lime); color: var(--on-lime); border: none; padding: 16px 56px; font-size: 15px; font-weight: 700; border-radius: 4px; cursor: pointer; font-family: inherit; transition: all 0.15s ease; letter-spacing: 0.5px; position: relative; box-shadow: 4px 4px 0 var(--lime-deep); }
+  .submit-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--lime-deep); }
+  .submit-btn:active { transform: translate(0,0); box-shadow: 2px 2px 0 var(--lime-deep); }
+  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  /* TIPS */
+  .tips { background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 28px 32px; margin-top: 28px; position: relative; }
+  .tips::before { content: ""; position: absolute; top: -1px; left: -1px; width: 48px; height: 4px; background: var(--ink); }
+  .tips-label { font-family: 'IBM Plex Mono',monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 4px; }
+  .tips-title { font-size: 18px; font-weight: 700; color: var(--ink); margin: 0 0 16px; }
+  .tip-item { display: flex; gap: 14px; margin-bottom: 12px; font-size: 14px; color: var(--ink-mid); line-height: 1.6; padding: 12px 14px; background: var(--bg-warm); border-radius: 4px; }
+  .tip-item:last-child { margin-bottom: 0; }
+  .tip-item strong { color: var(--ink); }
+  .tip-num { flex-shrink: 0; width: 24px; height: 24px; background: var(--ink); color: var(--lime); font-family: 'IBM Plex Mono',monospace; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center; border-radius: 2px; margin-top: 1px; }
+
+  /* FOOTER */
+  .footer { background: var(--ink); color: rgba(255,255,255,0.7); padding: 40px 24px; text-align: center; margin-top: 60px; }
+  .footer-msg { font-size: 16px; color: #fff; margin-bottom: 12px; font-weight: 500; }
+  .footer-msg .accent { color: var(--lime); }
+  .footer-sub { font-size: 13px; line-height: 1.7; margin-bottom: 24px; }
+  .footer-contact { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; font-size: 13px; margin-bottom: 24px; }
+  .footer-contact a { color: var(--lime); text-decoration: none; }
+  .footer-contact a:hover { text-decoration: underline; }
+  .footer-meta { font-family: 'IBM Plex Mono',monospace; font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; text-transform: uppercase; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+
+  /* MOBILE */
+  @media(max-width:640px) {
+    .container { padding: 0 14px 60px; }
+    .header { padding: 40px 20px 60px; }
+    .header-title { font-size: 24px; }
+    .section-head,.section-body,.welcome,.tips { padding-left: 22px; padding-right: 22px; }
+    .submit-btn { padding: 14px 36px; font-size: 14px; }
+    .header-meta { gap: 12px; font-size: 10px; }
+  }
+
+  /* MODAL */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(11,20,64,0.85); display: none; align-items: center; justify-content: center; z-index: 100; padding: 20px; backdrop-filter: blur(4px); }
+  .modal-overlay.show { display: flex; }
+  .modal { background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--lime); border-radius: 4px; padding: 36px 32px; text-align: center; max-width: 440px; width: 100%; box-shadow: var(--shadow-md); }
+  .modal-tag { display: inline-block; background: var(--lime); color: var(--on-lime); font-family: 'IBM Plex Mono',monospace; font-size: 10px; padding: 4px 10px; border-radius: 2px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; margin-bottom: 16px; }
+  .modal h3 { font-size: 22px; margin: 0 0 12px; font-weight: 700; }
+  .modal p { font-size: 14px; color: var(--ink-mid); line-height: 1.7; margin: 0 0 20px; }
+  .modal-btn { background: var(--ink); border: none; color: var(--lime); padding: 12px 32px; border-radius: 4px; font-weight: 600; cursor: pointer; font-family: inherit; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <span class="topbar-dot"></span>
+    <span>2026 대학생 도전 스토리 공모전 · 접수 중</span>
+  </div>
+  <div>FORM ID: LL-2026-STORY-001</div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <svg class="logo-svg" width="220" height="72" viewBox="0 0 340 110" xmlns="http://www.w3.org/2000/svg">
+        <defs><style>.lf{fill:#3FA9E0}.ls{fill:#1B6FA0}</style></defs>
+        <g class="ls" transform="translate(8,8)"><text x="0" y="80" font-family="'Noto Sans KR',sans-serif" font-size="96" font-weight="900" letter-spacing="-4">LOGin</text></g>
+        <g class="lf"><text x="0" y="80" font-family="'Noto Sans KR',sans-serif" font-size="96" font-weight="900" letter-spacing="-4">LOGin</text></g>
+      </svg>
+    </div>
+    <div><span class="lab-tag">2026 대학생 도전 스토리 공모전</span></div>
+
+    <h1 class="header-title">너만의 도전 경험이,<br><span class="accent">너만의 스펙이 된다.</span></h1>
+    <p class="header-sub">2026 대학생 도전 스토리 공모전 — 참가 신청서</p>
+
+    <div class="header-meta">
+      <span>PERIOD · <strong>26.07.06 ~ 26.08.07</strong></span>
+      <span>AGE · <strong>만 20~25세</strong></span>
+      <span>SELECT · <strong>총 20명</strong></span>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- WHY -->
+  <section class="welcome" style="background: var(--lime-soft); border-color: var(--lime-deep); border-top: 4px solid var(--ink);">
+    <div class="welcome-label" style="color: var(--lime-deep); font-weight:700;">// Why Now · 신청 전 꼭 확인해주세요</div>
+    <h2 class="welcome-q" style="font-weight:900;">당신의 이야기가 <span class="mark">다음 세대의 용기</span>가 됩니다.</h2>
+    <p>한 번의 도전은 한 사람의 인생을 바꾸기도 합니다. 그리고 그 경험을 나누는 일은 또 다른 가능성을 만들어 냅니다. <span class="highlight">성공도 실패도 모두 누군가에게는 소중한 배움</span>이고, 당신이 남긴 이야기가 다음 세대의 용기가 되어줄 것입니다. 당신의 무한한 도전 스토리를 들려주세요!</p>
+  </section>
+
+  <!-- WELCOME -->
+  <section class="welcome">
+    <div class="welcome-label">// Welcome · 공모전 소개</div>
+    <h2 class="welcome-q">너만의 도전 경험이, 너만의 스펙이 된다.</h2>
+    <p>거창한 성공담이 아니어도 괜찮아요. <span class="highlight">스스로 도전했던 경험을 글로 적어주는 것</span>만으로 충분합니다. 도전 스토리를 가장 잘 담아준 분들에게는 아래 리워드가 제공됩니다. 간단한 글 적고, '도전 지원금' 받아가세요!</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-card-label">모집대상</div>
+        <div class="info-card-body">서울 / 경기 거주 대학생<br><strong>만 20~25세</strong> (취준생 · 졸업예정자 · 직장인 포함)</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">공모주제</div>
+        <div class="info-card-body">스스로 도전했던 경험을 글로<br><strong>예) 취준 · 버킷리스트 · 입시 · 대인관계</strong></div>
+      </div>
+      <div class="info-card" style="grid-column: 1 / -1;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:6px;">
+          <div class="info-card-label" style="margin-bottom:0;">지원내용 · 리워드</div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-mid); letter-spacing:0.03em;">※ 도전 스토리를 가장 잘 적어준 분들께 제공</div>
+        </div>
+        <div class="info-card-body">
+          <ul>
+            <li><strong>도전 지원금 50만원 (1명)</strong></li>
+            <li><strong>자소서 / 포트폴리오 첨삭 (14명)</strong></li>
+            <li><strong>1:1 프리미엄 멘탈 코칭 (5명)</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 일정 -->
+  <section class="welcome" style="padding-bottom: 28px;">
+    <div class="welcome-label">// Schedule · 전형일정</div>
+    <h2 class="welcome-q" style="font-size:20px; margin-bottom:16px;">한눈에 보는 진행 일정</h2>
+    <div class="schedule-table">
+      <div class="schedule-row">
+        <div class="schedule-label">// Application</div>
+        <div class="schedule-value"><strong>2026. 07. 06 (월) ~ 08. 07 (금)</strong> · 신청서 접수</div>
+      </div>
+      <div class="schedule-row">
+        <div class="schedule-label">// Selection</div>
+        <div class="schedule-value">접수 마감 후 · <strong>총 20명 선정</strong>(리워드 항목별 상이) 및 개별 안내</div>
+      </div>
+      <div class="schedule-row">
+        <div class="schedule-label">// How to Apply</div>
+        <div class="schedule-value">본 페이지 하단 <strong>신청 폼 작성 및 제출</strong>로 접수 완료</div>
+      </div>
+    </div>
+  </section>
+
+  <form id="applyForm" onsubmit="return handleSubmit(event)">
+
+    <!-- 01. 기본 정보 -->
+    <section class="section">
+      <header class="section-head">
+        <div class="section-num">01</div>
+        <div class="section-titles">
+          <div class="section-meta">PARTICIPANT INFO</div>
+          <h3 class="section-title">기본 정보</h3>
+        </div>
+      </header>
+      <div class="section-body">
+        <p class="section-desc">선정 결과 안내와 지원 자격 확인에만 사용됩니다. 외부에 공유되지 않습니다.</p>
+
+        <div class="row">
+          <div class="field">
+            <label>이름 <span class="req">REQUIRED</span></label>
+            <input type="text" name="name" placeholder="예) 홍길동" required />
+          </div>
+          <div class="field">
+            <label>만 나이 <span class="req">REQUIRED</span></label>
+            <input type="number" name="age" min="20" max="25" placeholder="예) 23" required />
+            <p class="hint">// 만 20~25세 대학생 우선 선발</p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>현재 신분 <span class="req">REQUIRED</span></label>
+          <select name="student_status" required>
+            <option value="">선택해주세요</option>
+            <option value="대학생 (재학 중)">대학생 (재학 중)</option>
+            <option value="대학생 (휴학 중)">대학생 (휴학 중)</option>
+            <option value="졸업예정자">졸업예정자</option>
+            <option value="취업 준비생">취업 준비생</option>
+            <option value="직장인">직장인</option>
+            <option value="기타">기타</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>거주지 <span class="req">REQUIRED</span></label>
+          <p class="hint" style="margin-top:0; margin-bottom:10px;">// 서울 / 경기 거주 대학생만 지원 가능합니다.</p>
+          <div class="options" style="margin-bottom:10px;">
+            <div class="option">
+              <input type="radio" id="region-seoul" name="region" value="서울" required />
+              <label for="region-seoul"><strong>서울</strong></label>
+            </div>
+            <div class="option">
+              <input type="radio" id="region-gg" name="region" value="경기" />
+              <label for="region-gg"><strong>경기</strong></label>
+            </div>
+          </div>
+          <input type="text" name="residence_detail" id="residence_detail"
+            placeholder="먼저 위에서 지역을 선택해 주세요"
+            disabled style="opacity:0.5; cursor:not-allowed;" />
+          <p class="hint" id="residence_hint" style="display:none;">// 세부 시·구·동을 적어주세요. 예) 마포구 연남동 / 수원시 영통구</p>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>연락처 <span class="req">REQUIRED</span></label>
+            <input type="tel" name="phone" placeholder="01012345678" required />
+            <p class="hint">// 선정 결과 안내에 사용됩니다.</p>
+          </div>
+          <div class="field">
+            <label>이메일 <span class="opt">OPTIONAL</span></label>
+            <input type="email" name="email" placeholder="example@email.com" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02. 도전 스토리 -->
+    <section class="section">
+      <header class="section-head">
+        <div class="section-num">02</div>
+        <div class="section-titles">
+          <div class="section-meta">YOUR CHALLENGE STORY</div>
+          <h3 class="section-title">당신의 도전 이야기를 들려주세요</h3>
+        </div>
+      </header>
+      <div class="section-body">
+        <p class="section-desc">잘 쓰려고 하지 않아도 괜찮아요. 스스로 도전했던 경험을 편하게 적어주세요.</p>
+
+        <div class="field">
+          <label>도전 분야 <span class="req">REQUIRED</span></label>
+          <div class="options">
+            <div class="option">
+              <input type="radio" id="cat-1" name="story_category" value="취준" required />
+              <label for="cat-1"><strong>취준</strong></label>
+            </div>
+            <div class="option">
+              <input type="radio" id="cat-2" name="story_category" value="버킷리스트" />
+              <label for="cat-2"><strong>버킷리스트</strong></label>
+            </div>
+            <div class="option">
+              <input type="radio" id="cat-3" name="story_category" value="입시" />
+              <label for="cat-3"><strong>입시</strong></label>
+            </div>
+            <div class="option">
+              <input type="radio" id="cat-4" name="story_category" value="대인관계" />
+              <label for="cat-4"><strong>대인관계</strong></label>
+            </div>
+            <div class="option">
+              <input type="radio" id="cat-5" name="story_category" value="기타" />
+              <label for="cat-5"><strong>기타</strong></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field" style="margin-top:20px;">
+          <label>도전 스토리 <span class="req">REQUIRED</span></label>
+          <textarea name="story" maxlength="1000" rows="8"
+            placeholder="어떤 도전을 했고, 어떤 어려움이 있었으며, 무엇을 배우고 성장했는지 자유롭게 적어주세요.
+
+예) '취준 6개월 동안 매일 새벽에 일어나 스터디를 만들고 이끌었던 이야기' / '혼자 해외 배낭여행을 다녀오기로 결심하고 실행했던 이야기' / '낯을 심하게 가리는 성격을 극복하려고 동아리 회장을 자원했던 이야기'" required></textarea>
+          <div class="char-counter"><span id="storyCount">0</span> / 1,000자</div>
+          <div class="guide">완성된 글이 아니어도 좋아요. 솔직한 경험 그대로가 가장 좋은 스토리입니다.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03. 개인정보 동의 -->
+    <section class="section">
+      <header class="section-head">
+        <div class="section-num">03</div>
+        <div class="section-titles">
+          <div class="section-meta">CONSENT</div>
+          <h3 class="section-title">개인정보 수집 · 이용 동의</h3>
+        </div>
+      </header>
+      <div class="section-body">
+        <p class="section-desc">아래 동의는 필수이며, 동의하지 않으실 경우 신청이 어렵습니다.</p>
+
+        <div class="consent">
+          <strong>// Data Collection Notice</strong>
+          수집 주체 — LOG.in<br>
+          수집 항목 — 이름, 만 나이, 신분, 거주지, 연락처, 이메일, 도전 분야, 도전 스토리.<br>
+          이용 목적 — 신청자 선정 및 심사, 결과 안내, 프로그램 운영 및 개선.<br>
+          보유 기간 — 공모전 종료 후 1년 이내 파기. 제3자 제공 없음.
+        </div>
+        <div class="options options-vertical">
+          <div class="option checkbox">
+            <input type="checkbox" id="agree-privacy" name="agree_privacy" required />
+            <label for="agree-privacy">[필수] 개인정보 수집·이용에 동의합니다.</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="submit-area">
+      <div class="submit-area-text">// Ready to Submit · 신청 마감 2026.08.07</div>
+      <button type="submit" class="submit-btn" id="submitBtn">신청서 제출하기 →</button>
+    </div>
+  </form>
+
+  <section class="tips">
+    <div class="tips-label">// Notice</div>
+    <h3 class="tips-title">신청 전 확인사항</h3>
+    <div class="tip-item">
+      <div class="tip-num">01</div>
+      <div><strong>지원 자격</strong> · 서울·경기 거주 만 20~25세 대학생. 취준·졸업예정자·직장인 모두 가능.</div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">02</div>
+      <div><strong>선정 방식</strong> · 접수된 도전 스토리 중 가장 진솔하고 알차게 적어주신 분들을 대상으로 심사 후 총 20명(리워드 항목별 상이)을 선정, 개별 문자·이메일로 안내드립니다.</div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">03</div>
+      <div><strong>진행 절차</strong> · 신청서 접수 → 심사 → 선정 안내 → 리워드 지급</div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-msg">한 번의 도전은, <span class="accent">다음 도전이 됩니다.</span></div>
+  <div class="footer-sub">성공도 실패도 모두 배움입니다 — 당신의 이야기를 들려주세요.</div>
+  <div class="footer-contact">
+    <span>✉ 문의 · <a href="mailto:program@login.kr">program@login.kr</a></span>
+    <span>🌐 홈페이지 · <a href="https://theloginlab.co.kr/" target="_blank" rel="noopener">theloginlab.co.kr</a></span>
+  </div>
+  <div class="footer-meta">
+    <span>© 2026 LOG.in</span>
+    <span>CHALLENGE STORY CONTEST</span>
+    <span>FORM v1.0</span>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-tag">SUBMITTED · 제출 완료</div>
+    <h3>도전 이야기, 잘 받았습니다!</h3>
+    <p>운영팀이 내용을 검토한 뒤,<br>선정 결과를 입력하신 연락처로<br>개별 안내드립니다.<br><br>당신의 용기에<br>박수를 보냅니다.</p>
+    <button class="modal-btn" onclick="closeModal()">확인</button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  var GAS_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+
+  // ===== Supabase 연동 =====
+  var _sb = supabase.createClient(
+    'https://atzyvbifvrlhwploqmpr.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0enl2YmlmdnJsaHdwbG9xbXByIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyMjQzNTEsImV4cCI6MjA5MzgwMDM1MX0.6ap0rxCQXVsShJXTFb5UIKN4ykog32BLL1sBZN6vEMo'
+  );
+
+  async function saveToSupabase(data) {
+    var payload = {
+      name:             data.name || '',
+      age:              data.age || '',
+      student_status:   data.student_status || '',
+      phone:            data.phone || '',
+      email:            data.email || '',
+      region:           data.region || '',
+      residence_detail: data.residence_detail || '',
+      story_category:   data.story_category || '',
+      story:            data.story || '',
+      agree_privacy:    !!data.agree_privacy,
+      user_agent:       navigator.userAgent,
+      submitted_at:     new Date().toISOString()
+    };
+    var res = await _sb.from('AD-muhae-story-contest').insert([payload]);
+    if (res.error) console.error('[Supabase] 저장 실패:', res.error.message);
+    else console.log('[Supabase] 저장 완료');
+  }
+
+  // 거주지 세부 입력 활성화
+  (function () {
+    var regionInputs = document.querySelectorAll('input[name="region"]');
+    var detail = document.getElementById('residence_detail');
+    var hint = document.getElementById('residence_hint');
+    var placeholders = {
+      '서울': '예) 마포구 연남동 / 강남구 역삼동',
+      '경기': '예) 성남시 분당구 / 수원시 영통구'
+    };
+    regionInputs.forEach(function (r) {
+      r.addEventListener('change', function () {
+        detail.disabled = false; detail.required = true;
+        detail.style.opacity = '1'; detail.style.cursor = 'text';
+        detail.placeholder = placeholders[r.value] || '세부 시·구·동을 적어주세요';
+        hint.style.display = 'block'; detail.focus();
+      });
+    });
+  })();
+
+  // 글자수 카운터
+  (function () {
+    var ta = document.querySelector('textarea[name="story"]');
+    var counter = document.getElementById('storyCount');
+    if (ta && counter) {
+      ta.addEventListener('input', function() {
+        counter.textContent = ta.value.length.toLocaleString();
+        var el = counter.parentElement;
+        if (ta.value.length > 1000 * 0.9) el.classList.add('warn');
+        else el.classList.remove('warn');
+      });
+    }
+  })();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    var form = e.target;
+    if (!form.checkValidity()) { form.reportValidity(); return false; }
+
+    var formData = new FormData(form);
+    var data = Object.fromEntries(formData.entries());
+    data.agree_privacy = form.agree_privacy && form.agree_privacy.checked;
+
+    ['name','residence_detail','phone','email','story'].forEach(function(k) {
+      if (typeof data[k] === 'string') data[k] = data[k].trim();
+    });
+    data.userAgent = navigator.userAgent;
+    data.timestamp = new Date().toISOString();
+
+    var btn = document.getElementById('submitBtn');
+    btn.disabled = true; btn.textContent = '제출 중...';
+
+    // Supabase 저장 (구글시트와 병행)
+    saveToSupabase(data);
+
+    if (!GAS_URL || GAS_URL.indexOf('YOUR_APPS_SCRIPT') === 0) {
+      setTimeout(function () {
+        document.getElementById('modal').classList.add('show');
+        btn.disabled = false; btn.textContent = '신청서 제출하기 →';
+      }, 800);
+      return false;
+    }
+
+    fetch(GAS_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(data)
+    })
+    .then(function () { document.getElementById('modal').classList.add('show'); })
+    .catch(function () { alert('제출 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.'); })
+    .finally(function () { btn.disabled = false; btn.textContent = '신청서 제출하기 →'; });
+
+    return false;
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('show');
+    document.getElementById('applyForm').reset();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
