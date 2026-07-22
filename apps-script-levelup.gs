@@ -132,7 +132,7 @@ var FORMS = {
       '이름', '만 나이', '신분',
       '거주지 (시/도)', '거주지 상세', '전화번호', '이메일',
       '학교 · 학년', '전공',
-      '고민 유형', '고민 이야기',
+      '고민 유형', '고민이 시작된 상황', '구체적으로 힘든 점', '듣고 싶은 조언',
       '개인정보 동의',
       'User-Agent', '타임스탬프'
     ],
@@ -140,19 +140,21 @@ var FORMS = {
       return [
         new Date(),
         data.name             || '',
-        data.age              || '',
-        data.student_status   || '',
-        data.region           || '',
-        data.residence_detail || '',
-        data.phone            || '',
-        data.email            || '',
-        data.school           || '',
-        data.major            || '',
-        data.worry_type       || '',
-        data.worry_story      || '',
+        data.age               || '',
+        data.student_status    || '',
+        data.region             || '',
+        data.residence_detail  || '',
+        data.phone              || '',
+        data.email               || '',
+        data.school              || '',
+        data.major               || '',
+        data.worry_type          || '',
+        data.worry_situation     || '',
+        data.worry_difficulty    || '',
+        data.worry_advice        || '',
         data.agree_privacy ? 'O' : 'X',
-        data.userAgent        || '',
-        data.timestamp        || ''
+        data.userAgent          || '',
+        data.timestamp          || ''
       ];
     }
   }
