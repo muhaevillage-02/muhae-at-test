@@ -405,55 +405,10 @@
       </div>
     </section>
 
-    <!-- 03. 참여 동기 -->
+    <!-- 03. 취업 준비 이력 -->
     <section class="section">
       <header class="section-head">
         <div class="section-num">03</div>
-        <div class="section-titles">
-          <div class="section-meta">MOTIVATION</div>
-          <h3 class="section-title">프로그램 신청 동기</h3>
-        </div>
-      </header>
-      <div class="section-body">
-        <p class="section-desc">완성된 글이 아니어도 좋습니다. 막혀 있는 그 지점, 솔직한 한두 문장이면 충분합니다.</p>
-
-        <div class="field">
-          <label>참여 동기 <span class="req">REQUIRED</span></label>
-          <textarea name="motivation" maxlength="500" placeholder="예) 전공은 정했지만 막상 이걸로 진로를 가고 싶지는 않아요. 전공을 바꾸고 싶은데 어디서부터 해야 할지 모르겠어요. 여러 가지 하고는 있지만 잘 하고 있는 건지 모르겠어요." required></textarea>
-          <div class="char-counter"><span id="motivationCount">0</span> / 500자</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 04. 희망 직무 & 전공 -->
-    <section class="section">
-      <header class="section-head">
-        <div class="section-num">04</div>
-        <div class="section-titles">
-          <div class="section-meta">CAREER FOCUS</div>
-          <h3 class="section-title">희망 직무 · 전공</h3>
-        </div>
-      </header>
-      <div class="section-body">
-        <p class="section-desc">AI 적성 검사와 1:1 코칭 매칭 정확도를 높이기 위한 정보입니다. 아직 탐색 단계라도 그대로 적어주세요.</p>
-
-        <div class="field">
-          <label>희망 직무 / 관심 분야 <span class="req">REQUIRED</span></label>
-          <input type="text" name="job_target" placeholder="예) 홍보 / 마케팅 / IT / 디자인 / 문화예술 / 아직 탐색 단계" required />
-          <div class="guide">정해지지 않았다면 "아직 탐색 단계"라고 적어도 좋습니다. 그 자체가 매칭에 중요한 정보입니다.</div>
-        </div>
-
-        <div class="field">
-          <label>전공 <span class="opt">OPTIONAL</span></label>
-          <input type="text" name="edu" placeholder="예) ○○대학교 경영학과 / 전문대 시각디자인" />
-        </div>
-      </div>
-    </section>
-
-    <!-- 05. 취업 준비 이력 -->
-    <section class="section">
-      <header class="section-head">
-        <div class="section-num">05</div>
         <div class="section-titles">
           <div class="section-meta">PAST ATTEMPTS</div>
           <h3 class="section-title">내가 겪어본 경험과 도전</h3>
@@ -471,10 +426,10 @@
       </div>
     </section>
 
-    <!-- 06. 필요한 지원 항목 -->
+    <!-- 04. 필요한 지원 항목 -->
     <section class="section">
       <header class="section-head">
-        <div class="section-num">06</div>
+        <div class="section-num">04</div>
         <div class="section-titles">
           <div class="section-meta">CHOOSE ONE</div>
           <h3 class="section-title">어떤 도움이 가장 필요한가요?</h3>
@@ -509,10 +464,10 @@
       </div>
     </section>
 
-    <!-- 07. 개인정보 동의 -->
+    <!-- 05. 개인정보 동의 -->
     <section class="section">
       <header class="section-head">
-        <div class="section-num">07</div>
+        <div class="section-num">05</div>
         <div class="section-titles">
           <div class="section-meta">CONSENT</div>
           <h3 class="section-title">개인정보 수집 · 이용 동의</h3>
@@ -524,7 +479,7 @@
         <div class="consent">
           <strong>// Data Collection Notice</strong>
           수집 주체 — LOG.in<br>
-          수집 항목 — 이름, 만 나이, 신분, 거주지, 연락처, 이메일(선택), 희망 직무, 전공, 준비해본 시도들, 참여 동기, 현재 상태, 지원 항목.<br>
+          수집 항목 — 이름, 만 나이, 신분, 거주지, 연락처, 이메일(선택), 준비해본 시도들, 현재 상태, 지원 항목.<br>
           이용 목적 — 신청자 선정 및 매칭, 결과 안내, 프로그램 운영 및 개선.<br>
           보유 기간 — 사업 종료 후 1년 이내 파기. 제3자 제공 없음.
         </div>
@@ -606,10 +561,7 @@
       residence_detail: data.residence_detail || '',
       status:           data.status || '',
       status_other:     data.status_other || '',
-      job_target:       data.job_target || '',
-      edu:              data.edu || '',
       history:          data.history || '',
-      motivation:       data.motivation || '',
       support:          data.support || '',
       agree_privacy:    !!data.agree_privacy,
       user_agent:       navigator.userAgent,
@@ -661,7 +613,7 @@
   })();
 
   // 글자수 카운터
-  [['motivation','motivationCount',500],['history','historyCount',500]].forEach(function(cfg) {
+  [['history','historyCount',500]].forEach(function(cfg) {
     var ta = document.querySelector('textarea[name="' + cfg[0] + '"]');
     var counter = document.getElementById(cfg[1]);
     if (ta && counter) {
@@ -683,7 +635,7 @@
     var data = Object.fromEntries(formData.entries());
     data.agree_privacy = form.agree_privacy && form.agree_privacy.checked;
 
-    ['name','residence_detail','phone','email','job_target','edu','history','motivation','status_other'].forEach(function(k) {
+    ['name','residence_detail','phone','email','history','status_other'].forEach(function(k) {
       if (typeof data[k] === 'string') data[k] = data[k].trim();
     });
     data.userAgent = navigator.userAgent;
